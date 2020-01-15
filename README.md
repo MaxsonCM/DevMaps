@@ -1,4 +1,4 @@
-# Project DevMaps
+# Project DevMaps (Dev Radar)
 
 This project is about RocketSeat omnistack week 10.0, where during the week technologies like Node.js, React and React Native will be shown working together.
 
