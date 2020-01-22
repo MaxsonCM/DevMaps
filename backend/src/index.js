@@ -2,11 +2,18 @@ const dotenv = require ('dotenv')
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const http = require('http');
+
 const routes = require('./routes')
+const { setupWebsocket } = require('./websocket')
+
 
 dotenv.config ()
 
 const app = express();
+const server = http.Server(app);
+
+setupWebsocket(server);
 
 mongoose.connect('mongodb+srv://' + process.env.BD_USER + ':' + process.env.BD_PASSWORD + '@' + process.env.BD_HOST + '?retryWrites=true&w=majority',{
     useNewUrlParser: true,

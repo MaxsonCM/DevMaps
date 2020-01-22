@@ -1,4 +1,3 @@
-const axios = require('axios')
 const Dev = require('../models/Devs')
 const parseStringAsArray = require('../utils/parseStringAsArray')
 //index, show, store, update, destroy
@@ -8,7 +7,7 @@ module.exports = {
         //buscar todos os devs em um raio
         const { latitude, longitude, techs } = req.query
         const techs_array = parseStringAsArray(techs)
-        console.log(techs_array)
+        
         const devs = await Dev.find({
             techs: {
                 $in: techs_array,
@@ -23,7 +22,7 @@ module.exports = {
                 }
             }
         })
-
+        
         return res.json(devs)
     },
 }

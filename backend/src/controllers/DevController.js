@@ -1,6 +1,7 @@
 const axios = require('axios')
 const Dev = require('../models/Devs')
 const parseStringAsArray = require('../utils/parseStringAsArray')
+const { findConnections, sendMessage } = require('../websocket')
 
 //index, show, store, update, destroy
 
@@ -44,14 +45,21 @@ module.exports = {
                 bio,
                 techs: techs_array,
                 location,
-            })    
+            })
+
+            const sendSocketMessageTo = findConnections(
+                { latitude, longitude },
+                techsArray,
+            )
+
+            sendMessage(sendSocketMessageTo, 'newDev', dev);
         }
 
         return res.json(dev)
     },
 
     async update(req, res){
-
+        return res.status(400).json({ error: 'this function does not exists yet'})
     },
 
     async destroy(req, res){
